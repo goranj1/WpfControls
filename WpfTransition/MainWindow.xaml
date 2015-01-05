@@ -1,0 +1,45 @@
+﻿<Window x:Class="WpfTransition.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:wpfTransition="clr-namespace:WpfTransition"
+        Title="MainWindow" Height="350" Width="525">
+	<Window.Resources>
+		<Storyboard x:Key="MoveAnim">
+			<DoubleAnimationUsingKeyFrames Storyboard.TargetProperty="(UIElement.RenderTransform).(TransformGroup.Children)[3].(TranslateTransform.X)" Storyboard.TargetName="OldView">
+				<EasingDoubleKeyFrame KeyTime="0:0:2" Value="100"/>
+			</DoubleAnimationUsingKeyFrames>
+		</Storyboard>
+	</Window.Resources>
+	
+    <Grid x:Name="Cont">
+        <Grid.RenderTransform>
+            <TransformGroup>
+                <ScaleTransform/>
+                <SkewTransform/>
+                <RotateTransform/>
+                <TranslateTransform/>
+            </TransformGroup>
+        </Grid.RenderTransform>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"></RowDefinition>
+            <RowDefinition Height="*"></RowDefinition>
+        </Grid.RowDefinitions>
+        <Button Content="Move" Margin="10" Grid.Row="0" Click="Button_Click"></Button>
+        <ContentControl x:Name="OldView" Grid.Row="1">
+            <wpfTransition:FirstWindow></wpfTransition:FirstWindow>
+            <ContentControl.RenderTransform>
+            	<TransformGroup>
+            		<ScaleTransform/>
+            		<SkewTransform/>
+            		<RotateTransform/>
+            		<TranslateTransform/>
+            	</TransformGroup>
+            </ContentControl.RenderTransform>
+        </ContentControl>
+        <ContentControl x:Name="NewView" Grid.Row="1">
+            <ContentControl.RenderTransform>
+                <TranslateTransform></TranslateTransform>
+            </ContentControl.RenderTransform>
+        </ContentControl>
+    </Grid>
+</Window>
