@@ -1,0 +1,25 @@
+﻿<Window x:Class="WpfControlsApp.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:wpfCustomControls="clr-namespace:WpfCustomControls;assembly=WpfCustomControls"
+        Title="MainWindow" Height="350" Width="525" DataContext="{Binding Main, Source= {StaticResource Locator}}">
+    <Grid>
+        <StackPanel Orientation="Vertical">
+            <TextBlock Text="{Binding Title}"></TextBlock>
+            <wpfCustomControls:AutoCompleteBox Height="50" Text="{Binding Txt, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Results="{Binding Suggestion}" IsBusy="{Binding Busy}">
+                <wpfCustomControls:AutoCompleteBox.ItemTemplate>
+                    <DataTemplate>
+                        <Grid>
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="1"></ColumnDefinition>
+                                <ColumnDefinition Width="*"></ColumnDefinition>
+                            </Grid.ColumnDefinitions>
+                           
+                            <TextBlock  Margin="5 0 0 0" TextWrapping="Wrap"  Grid.Column="1" Text="{Binding Title}"></TextBlock>
+                        </Grid>
+                    </DataTemplate>
+                </wpfCustomControls:AutoCompleteBox.ItemTemplate>
+            </wpfCustomControls:AutoCompleteBox>
+        </StackPanel>
+    </Grid>
+</Window>
